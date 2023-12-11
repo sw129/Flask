@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+заметки
+{% endblock %}
+
+{% block body %}
+<form method="post">
+    <label for="noteTitle">Название</label>
+    <input type="text" id="noteTitle" name="noteTitle" required>
+    <br>
+    <label for="note">Текст</label>
+    <textarea class="Note" type="text" id="note" name="note" rows="20" cols="80" required>
+    </textarea>
+    <button type="submit">Сохранить</button>
+</form>
+{% for note in notes %}
+<div>
+    <div>
+        <h1>{{note['title']}}</h1>
+        <p>{{note['content']}}</p>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
