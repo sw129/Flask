@@ -5,6 +5,16 @@
 {% endblock %}
 
 {% block body %}
-<a href="/auth/register">Создать аккаунт</a>
-<a href="/auth/login">Войти</a>
+{% if user_is_authenticated %}
+<div class="nav">
+    <button onclick="location.href='{{ url_for('notes.note_nav') }}'">Заметки</button>
+    <button onclick="location.href='{{ url_for('auth.logout') }}'">Выйти из аккаунта</button>
+</div>
+{% else %}
+<div class="nav">
+    <button onclick="location.href='{{ url_for('auth.register') }}'">Создать аккаунт</button>
+    <button onclick="location.href='{{ url_for('auth.login') }}'">Войти</button>
+</div>
+{% endif %}
+
 {% endblock %}

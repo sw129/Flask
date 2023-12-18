@@ -18,7 +18,7 @@ def register():
 
         user = User.query.filter_by(email=email).first()
         if user:
-            flash('Email address already exists')
+            flash('Почта уже зарегистрированна')
             return redirect(url_for('auth.register'))
 
         new_user = User(name=name, email=email, password=password)
@@ -28,7 +28,7 @@ def register():
 
         return redirect(url_for('auth.login'))
 
-    return render_template('register.html')
+    return render_template('auth/register.html')
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -40,16 +40,14 @@ def login():
         user = User.query.filter_by(email=email).first()
 
         if user and user.verify_password(password):
-            #session['user_id'] = user.user_id
             login_user(user)
-            return redirect('/notes')
+            return redirect(url_for('notes.note_nav'))
         else:
             return 'Неверный логин или пароль'
-    return render_template('login.html')
+    return render_template('auth/login.html')
 
 @auth.route('/logout')
 def logout():
-    #session.pop('user_id', None)
     logout_user()
     return redirect(url_for('auth.login'))
 

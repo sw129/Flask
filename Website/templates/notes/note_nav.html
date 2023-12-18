@@ -1,0 +1,12 @@
+{% extends 'notes/base_note.html' %}
+
+{% block title %}
+Добавить заметку
+{% endblock %}
+
+{% block body %}
+<div class="nav">
+    <button onclick="location.href='{{ url_for('notes.add_note') }}'">Добавить заметку</button>
+    <button onclick="location.href='{{ url_for('notes.list_notes') }}'">Список заметок</button>
+</div>
+{% endblock %}
